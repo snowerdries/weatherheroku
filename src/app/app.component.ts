@@ -34,6 +34,14 @@ export class AppComponent implements OnInit {
                        error =>  this.errorMessage = <any>error);
   }
 
+  getWeatherImage() {
+    if (this.weatherInfo && this.weatherInfo.weather) {
+      return 'http://openweathermap.org/img/w/' + this.weatherInfo.weather[0].icon + '.png';
+
+    }
+    return '';
+  }
+
   locateMe() {
     const that = this;
     navigator.geolocation.getCurrentPosition(function(position) {

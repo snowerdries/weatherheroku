@@ -4,6 +4,11 @@
   </div>
   <div class="panel-body">
     <div class="row">
+        <div class="col-xs12">
+            <img [src]="getWeatherImage()" />
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-4 col-md-1 text-left"><span class="label label-info">City</span></div>
         <div class="col-xs-8 col-md-11 text-left">{{weatherInfo.name}}</div>
     </div>

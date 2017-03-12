@@ -5,16 +5,16 @@
   </div>
   <div class="panel-body">
     <div class="row">
-        <div class="col-xs-2 col-md-1 text-left">City</div>
-        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.name}}</div>
+        <div class="col-xs-4 col-md-1 text-left">City</div>
+        <div class="col-xs-8 col-md-11 text-left">{{weatherInfo.name}}</div>
     </div>
     <div class="row">
-        <div class="col-xs-2 col-md-1 text-left">Temperature</div>
-        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.main.temp}}</div>
+        <div class="col-xs-4 col-md-1 text-left">Temperature</div>
+        <div class="col-xs-8 col-md-11 text-left">{{weatherInfo.main.temp}}</div>
     </div>
     <div class="row">
-        <div class="col-xs-2 col-md-1 text-left">Description</div>
-        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.weather[0].description}}</div>
+        <div class="col-xs-4 col-md-1 text-left">Description</div>
+        <div class="col-xs-8 col-md-11 text-left">{{weatherInfo.weather[0].description}}</div>
     </div>
    
     <div class="row top-buffer" *ngIf="errorMessage">

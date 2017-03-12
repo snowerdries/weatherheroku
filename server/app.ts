@@ -7,8 +7,8 @@ import { loginRouter } from './routes/login';
 import { protectedRouter } from './routes/protected';
 import { publicRouter } from './routes/public';
 import { feedRouter } from './routes/feed';
-import { userRouter } from "./routes/user";
-import { weatherRouter } from "./routes/weather";
+import { userRouter } from './routes/user';
+import { weatherRouter } from './routes/weather';
 
 const app: express.Application = express();
 
@@ -34,7 +34,7 @@ if (app.get('env') === 'production') {
 
 // catch 404 and forward to error handler
 app.use(function(req: express.Request, res: express.Response, next) {
-  let err = new Error('Not Found');
+  const err = new Error('Not Found');
   next(err);
 });
 

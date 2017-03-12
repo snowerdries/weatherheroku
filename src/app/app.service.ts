@@ -1,6 +1,6 @@
 // Observable Version
-import { Injectable }              from '@angular/core';
-import { Http, Response }          from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -16,18 +16,22 @@ export class WeatherService {
 
   constructor (private http: Http) {}
 
-  getWeather (): Observable<WeatherInfo> {
-    return this.http.get(this.weatherUrl)
+  getWeather (lat, lon): Observable<WeatherInfo> {
+    let query = '';
+    if (lat && lon) {
+      query = '?lat=' + lat + '&lon=' + lon;
+    }
+    return this.http.get(this.weatherUrl + query)
                     .map(this.extractData)
                     .catch(this.handleError);
-  } 
+  }
 
   private extractData(res: Response) {
-    let body = res.json();
+    const body = res.json();
     return body || { };
   }
 
-  private handleError (error: Response | any) {    
-    return Observable.throw("Error fetching weather info");
+  private handleError (error: Response | any) {
+    return Observable.throw('Error fetching weather info');
   }
 }

@@ -7,20 +7,37 @@ import { WeatherInfo } from './weatherInfo';
   templateUrl: './app.component.html',
   providers: [ WeatherService ],
 })
-export class AppComponent implements OnInit { 
-  constructor (private weatherService: WeatherService) {}
+export class AppComponent implements OnInit {
   errorMessage: string;
-  weatherInfo = new WeatherInfo(0,'',{},[{}]);
+  weatherInfo = new WeatherInfo(0, '', {}, [{}]);
+  currentLocation = null;
+  constructor (private weatherService: WeatherService) {}
 
-  ngOnInit() { 
-    this.getWeather(); 
+  ngOnInit() {
+    this.getWeather();
+    this.locateMe();
   }
 
   getWeather() {
+    this.locateMe();
     this.errorMessage = '';
-    this.weatherService.getWeather()
+    let lat = 0;
+    let lon = 0;
+    if (this.currentLocation) {
+      lat = this.currentLocation.coords.latitude;
+      lon = this.currentLocation.coords.longitude;
+    }
+    this.weatherService.getWeather(lat,lon)
                      .subscribe(
                        weatherInfo => this.weatherInfo = weatherInfo,
                        error =>  this.errorMessage = <any>error);
+  }
+
+  locateMe() {
+    const that = this;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log(position);
+      that.currentLocation = position;
+    });
   }
 }

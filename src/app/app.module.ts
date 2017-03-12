@@ -11,14 +11,12 @@ import { routing } from './app.router';
     AppComponent
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     FormsModule,
     HttpModule,
-    routing, 
+    routing,
   ],
-  providers: [
-    
-  ],
+  providers: [],
   bootstrap: [
     AppComponent
   ]

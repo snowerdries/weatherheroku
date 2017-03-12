@@ -1,7 +1,7 @@
 {
-  "name": "angular2-express-starter",
+  "name": "weatherheroku",
   "version": "1.0.0",
-  "description": "Starter application of Angular2 with Express",
+  "description": "Angular2 weather info",
   "main": "server/app.js",
   "license": "MIT",
   "scripts": {
@@ -15,9 +15,9 @@
     "_server:build": "tsc -p ./server",
     "postinstall": "npm run build"
   },
-  "author": "Vlado Tešanović",
+  "author": "Dries Nicolay",
   "repository": {
-    "url": "https://github.com/vladotesanovic/angular2-express-starter"
+    "url": "https://github.com/snowerdries/weatherheroku"
   },
   "private": true,
   "dependencies": {

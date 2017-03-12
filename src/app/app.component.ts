@@ -1,30 +1,26 @@
-import { Component } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
-import { Observable } from 'rxjs/Observable';
-
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import { Store } from '@ngrx/store';
-import { IAppState } from './store/index';
-import { USER_GET } from './store/profile/profile.actions';
+import { Component, OnInit } from '@angular/core';
+import { WeatherService } from './app.service';
+import { WeatherInfo } from './weatherInfo';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  providers: [ WeatherService ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit { 
+  constructor (private weatherService: WeatherService) {}
+  errorMessage: string;
+  weatherInfo = new WeatherInfo(0,'',{},[{}]);
 
-  observable$: Observable<{}>;
+  ngOnInit() { 
+    this.getWeather(); 
+  }
 
-  constructor(http: Http, store: Store<IAppState>) {
-    this.observable$ = http
-      .get('/api/public/simple')
-      .map((response: Response) => response.json());
-
-    store.dispatch({
-      type: USER_GET
-    });
+  getWeather() {
+    this.errorMessage = '';
+    this.weatherService.getWeather()
+                     .subscribe(
+                       weatherInfo => this.weatherInfo = weatherInfo,
+                       error =>  this.errorMessage = <any>error);
   }
 }

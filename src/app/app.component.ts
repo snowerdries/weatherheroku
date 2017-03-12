@@ -5,6 +5,7 @@ import { WeatherInfo } from './weatherInfo';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
   providers: [ WeatherService ],
 })
 export class AppComponent implements OnInit {

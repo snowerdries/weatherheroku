@@ -3,5 +3,5 @@ export class WeatherInfo {
     public id: number,
     public name: string,
     public main: Object,
-    public weather: Object[]) { }
+    public weather: any) { }
 }

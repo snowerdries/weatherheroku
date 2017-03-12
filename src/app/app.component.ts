@@ -7,14 +7,14 @@ import { WeatherInfo } from './weatherInfo';
   templateUrl: './app.component.html',
   providers: [ WeatherService ],
 })
-export class AppComponent implements OnInit { 
-  constructor (private weatherService: WeatherService) {}
+export class AppComponent implements OnInit {
   errorMessage: string;
-  weatherInfo = new WeatherInfo(0,'',{},[{}]);
+  weatherInfo = new WeatherInfo(0, '', {}, [{}]);
   currentLocation = null;
+  constructor (private weatherService: WeatherService) {}
 
-  ngOnInit() { 
-    this.getWeather(); 
+  ngOnInit() {
+    this.getWeather();
     this.locateMe();
   }
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     this.errorMessage = '';
     let lat = 0;
     let lon = 0;
-    if(this.currentLocation) {
+    if (this.currentLocation) {
       lat = this.currentLocation.coords.latitude;
       lon = this.currentLocation.coords.longitude;
     }
@@ -34,10 +34,10 @@ export class AppComponent implements OnInit {
   }
 
   locateMe() {
-    let that = this;
-    navigator.geolocation.getCurrentPosition(function(position) { 
-      console.log(position);       
-      that.currentLocation = position;  
+    const that = this;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log(position);
+      that.currentLocation = position;
     });
   }
 }

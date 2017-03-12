@@ -11,16 +11,33 @@ export class AppComponent implements OnInit {
   constructor (private weatherService: WeatherService) {}
   errorMessage: string;
   weatherInfo = new WeatherInfo(0,'',{},[{}]);
+  currentLocation = null;
 
   ngOnInit() { 
     this.getWeather(); 
+    this.locateMe();
   }
 
   getWeather() {
+    this.locateMe();
     this.errorMessage = '';
-    this.weatherService.getWeather()
+    let lat = 0;
+    let lon = 0;
+    if(this.currentLocation) {
+      lat = this.currentLocation.coords.latitude;
+      lon = this.currentLocation.coords.longitude;
+    }
+    this.weatherService.getWeather(lat,lon)
                      .subscribe(
                        weatherInfo => this.weatherInfo = weatherInfo,
                        error =>  this.errorMessage = <any>error);
+  }
+
+  locateMe() {
+    let that = this;
+    navigator.geolocation.getCurrentPosition(function(position) { 
+      console.log(position);       
+      that.currentLocation = position;  
+    });
   }
 }

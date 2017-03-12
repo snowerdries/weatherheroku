@@ -16,8 +16,12 @@ export class WeatherService {
 
   constructor (private http: Http) {}
 
-  getWeather (): Observable<WeatherInfo> {
-    return this.http.get(this.weatherUrl)
+  getWeather (lat, lon): Observable<WeatherInfo> {
+    let query = '';
+    if(lat && lon){
+      query = '?lat=' + lat + '&lon=' + lon;
+    }
+    return this.http.get(this.weatherUrl + query)
                     .map(this.extractData)
                     .catch(this.handleError);
   } 

@@ -2,10 +2,19 @@ import { Router, Response, Request } from "express";
 
 const weatherRouter: Router = Router();
 const http = require('http');
-const url = 'http://api.openweathermap.org/data/2.5/weather?q=Antwerp,BE&units=metric&appid=059c8a5c2e2e15362cbebcae80b68e7b';
+const url = 'http://api.openweathermap.org/data/2.5/weather?units=metric&appid=059c8a5c2e2e15362cbebcae80b68e7b';
 
 weatherRouter.get("/", (request: Request, response: Response) => {
-  http.get(url, function(res) {
+  const lat = request.query.lat;
+  const lon = request.query.lon;
+
+  let query = '&q=Antwerp,BE';
+
+  if(lat && lon) {
+    query = '&lat=' + lat + '&lon=' + lon;
+  }  
+
+  http.get(url + query, function(res) {
     var body = ''; // Will contain the final response
     // Received data is a buffer.
     // Adding it to our body

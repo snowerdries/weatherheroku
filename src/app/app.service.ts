@@ -12,7 +12,7 @@ import { WeatherInfo } from './weatherInfo';
 
 @Injectable()
 export class WeatherService {
-  private weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?q=Antwerp,BE&units=metric&appid=059c8a5c2e2e15362cbebcae80b68e7b';  // URL to web API
+  private weatherUrl = '/api/weather';  // URL to web API
 
   constructor (private http: Http) {}
 

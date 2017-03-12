@@ -1,9 +1,33 @@
-<app-ui-top-navigation></app-ui-top-navigation>
+<h1>Weather</h1>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Weather information</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+        <div class="col-xs-2 col-md-1 text-left">City</div>
+        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.name}}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-md-1 text-left">Temperature</div>
+        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.main.temp}}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-md-1 text-left">Description</div>
+        <div class="col-xs-10 col-md-11 text-left">{{weatherInfo.weather[0].description}}</div>
+    </div>
+   
+    <div class="row top-buffer" *ngIf="errorMessage">
+        <div class="col-xs-12"><div class="alert alert-danger" role="alert">{{errorMessage}}</div></div> 
+    </div>
+   
 
-<app-ui-sub-navigation [title]="(observable$ | async)?.title" [description]="(observable$ | async)?.text"></app-ui-sub-navigation>
-
-<div class="main">
-  <router-outlet></router-outlet>
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <button (click)="getWeather()" type="button" class="btn btn-default btn-md">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>   
+  </div>
 </div>
-
-<router-outlet name='modal'></router-outlet>

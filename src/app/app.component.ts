@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './app.service';
 import { WeatherInfo } from './weatherInfo';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { WeatherInfo } from './weatherInfo';
 })
 export class AppComponent implements OnInit {
   errorMessage: string;
-  weatherInfo = new WeatherInfo(0, '', {}, [{}]);
+  weatherInfo = new WeatherInfo(0, '', {}, [{}], {});
   currentLocation = null;
   constructor (private weatherService: WeatherService) {}
 
@@ -49,5 +50,9 @@ export class AppComponent implements OnInit {
     }, function (error) {
       console.log(error);
     });
+  }
+
+  getDate(dte) {
+    return moment.unix(dte).format('DD/MM/YYYY HH:mm');
   }
 }

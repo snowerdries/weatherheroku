@@ -50,6 +50,7 @@
     "express": "^4.13.4",
     "express-jwt": "^3.3.0",
     "jsonwebtoken": "^5.7.0",
+    "moment": "^2.17.1",
     "ngrx-store-freeze": "^0.1.6",
     "normalize.css": "^5.0.0",
     "path": "^0.12.7",

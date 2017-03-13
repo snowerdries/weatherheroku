@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   getWeatherImage() {
-    if (this.weatherInfo && this.weatherInfo.weather) {
+    if (this.weatherInfo && this.weatherInfo.weather && this.weatherInfo.weather.length > 0 && this.weatherInfo.weather[0].icon) {
       return 'http://openweathermap.org/img/w/' + this.weatherInfo.weather[0].icon + '.png';
 
     }
@@ -45,8 +45,9 @@ export class AppComponent implements OnInit {
   locateMe() {
     const that = this;
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position);
       that.currentLocation = position;
+    }, function (error) {
+      console.log(error);
     });
   }
 }

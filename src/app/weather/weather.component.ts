@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './weather.service';
 import { WeatherInfo } from './weatherInfo';
 import * as moment from 'moment';
+import * as _ from 'lodash';
+import 'bootstrap';
 
 @Component({
   selector: 'app-weather',
@@ -13,8 +15,10 @@ export class WeatherComponent implements OnInit {
   errorMessage: string;
   weatherInfo = new WeatherInfo(0, '', {}, [{}], {});
   currentLocation = null;
+  collapseId = _.uniqueId('collapse');
+  accordionId = _.uniqueId('accordion');
+  headingId = _.uniqueId('heading');
   constructor (private weatherService: WeatherService) {}
-
   ngOnInit() {
     this.getWeather();
     this.locateMe();

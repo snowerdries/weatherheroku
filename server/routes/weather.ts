@@ -2,7 +2,15 @@ import { Router, Response, Request } from "express";
 
 const weatherRouter: Router = Router();
 const http = require('http');
+const baseImageUrl = 'http://openweathermap.org/img/w/';
 const url = 'http://api.openweathermap.org/data/2.5/weather?units=metric&appid=059c8a5c2e2e15362cbebcae80b68e7b';
+var requestObj = require('request');
+
+
+weatherRouter.get('/image/:imgid', (request: Request, response: Response) => {
+  const imgid = request.params.imgid;
+  requestObj(baseImageUrl + imgid + '.png').pipe(response);
+});
 
 weatherRouter.get('/', (request: Request, response: Response) => {
   const lat = request.query.lat;

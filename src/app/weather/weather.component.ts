@@ -14,11 +14,12 @@ import 'bootstrap';
 export class WeatherComponent implements OnInit {
   errorMessage: string;
   weatherInfo: WeatherInfo;
+  weatherInfoImage: string;
   currentLocation = null;
   collapseId = _.uniqueId('collapse');
   accordionId = _.uniqueId('accordion');
   headingId = _.uniqueId('heading');
-  constructor (private weatherService: WeatherService) {}
+  constructor (private weatherService: WeatherService) { this.weatherInfoImage=''; }
   ngOnInit() {
     this.getWeather();
     this.locateMe();
@@ -35,16 +36,17 @@ export class WeatherComponent implements OnInit {
     }
     this.weatherService.getWeather(lat,lon)
                      .subscribe(
-                       weatherInfo => this.weatherInfo = weatherInfo,
+                       weatherInfo => {
+                         this.weatherInfo = weatherInfo
+                         this.fillWeatherImage();
+                        },
                        error =>  this.errorMessage = <any>error);
   }
 
-  getWeatherImage() {
+  fillWeatherImage() {
     if (this.weatherInfo && this.weatherInfo.weather && this.weatherInfo.weather.length > 0 && this.weatherInfo.weather[0].icon) {
-      return 'http://openweathermap.org/img/w/' + this.weatherInfo.weather[0].icon + '.png';
-
-    }
-    return '';
+      this.weatherInfoImage = 'http://openweathermap.org/img/w/' + this.weatherInfo.weather[0].icon + '.png';
+    }    
   }
 
   locateMe() {

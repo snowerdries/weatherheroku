@@ -45,7 +45,7 @@ export class WeatherComponent implements OnInit {
 
   fillWeatherImage() {
     if (this.weatherInfo && this.weatherInfo.weather && this.weatherInfo.weather.length > 0 && this.weatherInfo.weather[0].icon) {
-      this.weatherInfoImage = 'http://openweathermap.org/img/w/' + this.weatherInfo.weather[0].icon + '.png';
+      this.weatherInfoImage = '/api/weather/image/' + this.weatherInfo.weather[0].icon;
     }    
   }
 

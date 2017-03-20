@@ -18,23 +18,23 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text-left"><span class="label label-info">City</span></div>
-                        <div class="col-xs-8 text-left">{{weatherInfo.name}}</div>
+                        <div class="col-xs-8 text-left">{{weatherInfo?.name}}</div>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text-left"><span class="label label-info">Temperature</span></div>
-                        <div class="col-xs-8 text-left">{{weatherInfo.main.temp}} °C</div>
+                        <div class="col-xs-8 text-left">{{weatherInfo?.main.temp}} °C</div>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text-left"><span class="label label-info">Description</span></div>
-                        <div class="col-xs-8 text-left">{{weatherInfo.weather[0].description}}</div>
+                        <div class="col-xs-8 text-left">{{weatherInfo?.weather[0].description}}</div>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text-left"><span class="label label-info">Sun up</span></div>
-                        <div class="col-xs-8 text-left">{{getDate(weatherInfo.sys.sunrise)}}</div>
+                        <div class="col-xs-8 text-left">{{getDate(weatherInfo?.sys.sunrise)}}</div>
                     </div>
                     <div class="row">
                         <div class="col-xs-4 text-left"><span class="label label-info">Sun down</span></div>
-                        <div class="col-xs-8 text-left">{{getDate(weatherInfo.sys.sunset)}}</div>
+                        <div class="col-xs-8 text-left">{{getDate(weatherInfo?.sys.sunset)}}</div>
                     </div>
                 
                     <div class="row top-buffer" *ngIf="errorMessage">

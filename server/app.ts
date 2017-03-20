@@ -10,7 +10,30 @@ import { feedRouter } from './routes/feed';
 import { userRouter } from './routes/user';
 import { weatherRouter } from './routes/weather';
 
+var swaggerJSDoc = require('swagger-jsdoc');
+
 const app: express.Application = express();
+
+var options = {
+  swaggerDefinition: {
+    info: {
+      title: 'Weather API', // Title (required)
+      version: '1.0.0', // Version (required)
+    },
+    host: 'localhost:4200',
+    basePath: '/',
+  },
+  apis: ['./server/routes/*.ts'], // Path to the API docs
+};
+
+// initialize swagger-jsdoc
+var swaggerSpec = swaggerJSDoc(options);
+
+// serve swagger
+app.get('/api/swagger.json', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
 
 app.disable('x-powered-by');
 

@@ -6,12 +6,37 @@ const baseImageUrl = 'http://openweathermap.org/img/w/';
 const url = 'http://api.openweathermap.org/data/2.5/weather?units=metric&appid=059c8a5c2e2e15362cbebcae80b68e7b';
 var requestObj = require('request');
 
-
+/**
+ * @swagger
+ * /api/weather/image:
+ *   get:
+ *     tags:
+ *       - Weather image
+ *     description: Returns weather info image
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Get weather info image
+ */
 weatherRouter.get('/image/:imgid', (request: Request, response: Response) => {
   const imgid = request.params.imgid;
   requestObj(baseImageUrl + imgid + '.png').pipe(response);
 });
 
+/**
+ * @swagger
+ * /api/weather:
+ *   get:
+ *     tags:
+ *       - Weather
+ *     description: Returns weather info
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Get weather info
+ */
 weatherRouter.get('/', (request: Request, response: Response) => {
   const lat = request.query.lat;
   const lon = request.query.lon;

@@ -13,7 +13,7 @@ import 'bootstrap';
 })
 export class WeatherComponent implements OnInit {
   errorMessage: string;
-  weatherInfo = new WeatherInfo(0, '', {}, [{}], {});
+  weatherInfo: WeatherInfo;
   currentLocation = null;
   collapseId = _.uniqueId('collapse');
   accordionId = _.uniqueId('accordion');

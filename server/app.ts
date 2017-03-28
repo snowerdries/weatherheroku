@@ -10,11 +10,16 @@ import { feedRouter } from './routes/feed';
 import { userRouter } from './routes/user';
 import { weatherRouter } from './routes/weather';
 
-var swaggerJSDoc = require('swagger-jsdoc');
+const swaggerJSDoc = require('swagger-jsdoc');
 
 const app: express.Application = express();
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
-var options = {
+const options = {
   swaggerDefinition: {
     info: {
       title: 'Weather API', // Title (required)
@@ -27,7 +32,7 @@ var options = {
 };
 
 // initialize swagger-jsdoc
-var swaggerSpec = swaggerJSDoc(options);
+const swaggerSpec = swaggerJSDoc(options);
 
 // serve swagger
 app.get('/api/swagger.json', function(req, res) {

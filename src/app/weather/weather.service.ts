@@ -12,7 +12,7 @@ import { WeatherInfo } from './weatherInfo';
 
 @Injectable()
 export class WeatherService {
-  private weatherUrl = '/api/weather';  // URL to web API
+  private weatherUrl = 'https://weatherheroku.herokuapp.com/api/weather';  // URL to web API
 
   constructor (private http: Http) {}
 

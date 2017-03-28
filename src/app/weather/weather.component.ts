@@ -19,7 +19,7 @@ export class WeatherComponent implements OnInit {
   collapseId = _.uniqueId('collapse');
   accordionId = _.uniqueId('accordion');
   headingId = _.uniqueId('heading');
-  constructor (private weatherService: WeatherService) { this.weatherInfoImage=''; }
+  constructor (private weatherService: WeatherService) { this.weatherInfoImage = ''; }
   ngOnInit() {
     this.getWeather();
     this.locateMe();
@@ -34,10 +34,10 @@ export class WeatherComponent implements OnInit {
       lat = this.currentLocation.coords.latitude;
       lon = this.currentLocation.coords.longitude;
     }
-    this.weatherService.getWeather(lat,lon)
+    this.weatherService.getWeather(lat, lon)
                      .subscribe(
                        weatherInfo => {
-                         this.weatherInfo = weatherInfo
+                         this.weatherInfo = weatherInfo;
                          this.fillWeatherImage();
                         },
                        error =>  this.errorMessage = <any>error);
@@ -45,8 +45,8 @@ export class WeatherComponent implements OnInit {
 
   fillWeatherImage() {
     if (this.weatherInfo && this.weatherInfo.weather && this.weatherInfo.weather.length > 0 && this.weatherInfo.weather[0].icon) {
-      this.weatherInfoImage = '/api/weather/image/' + this.weatherInfo.weather[0].icon;
-    }    
+      this.weatherInfoImage = 'https://weatherheroku.herokuapp.com/api/weather/image/' + this.weatherInfo.weather[0].icon;
+    }
   }
 
   locateMe() {

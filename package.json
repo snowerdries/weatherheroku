@@ -4,6 +4,9 @@
   "description": "Angular2 weather info",
   "main": "server/app.js",
   "license": "MIT",
+  "engines": {
+    "node": "6.9.4"
+  },
   "scripts": {
     "start": "concurrently --kill-others \"ng serve --aot=true --progress=false --proxy-config proxy.conf.json\" \"npm run _server:run\"",
     "lint": "tslint \"src/**/*.ts\"",
